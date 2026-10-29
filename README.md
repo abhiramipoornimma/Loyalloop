@@ -1,173 +1,235 @@
-# LoyalLoop
+LoyalLoop
 
-LoyalLoop is a customer-loyalty (stamp-card) platform with role-based dashboards for platform admins, business owners, staff, and customers. Frontend: vanilla JavaScript + Vite. Backend: Supabase (Auth, Postgres, Storage, Edge Functions).
+A Multi-Business Digital Loyalty and Rewards Platform
 
-## Project structure
+LoyalLoop is a web-based loyalty platform designed to help businesses build stronger customer relationships through digital loyalty cards, visit stamps, rewards, and special offers. It supports multiple businesses on one platform, with separate dashboards and access permissions for platform administrators, business owners, staff, and customers.
 
-```
-.
-├── app.js                  # Shared auth (login/register), password reset, dashboard routing
-├── supabase.js             # Supabase client singleton (anon key only)
-├── business-application.js # Business application dialog handler
-├── styles.css              # Global styles
-├── index.html              # Landing page
-├── login.html              # Sign in (+ password reset dialog)
-├── register.html           # Sign up
-├── supabase-test.html      # Supabase connection test
-├── vite.config.js          # Vite build + dev-server route rewrites
-├── admin/                  # Platform admin dashboard
-├── owner/                  # Business owner dashboard
-├── staff/                  # Staff dashboard
-├── customer/               # Customer dashboard + business loyalty card
-├── b/                      # Public business loyalty pages
-├── supabase/               # Migrations, seed, Edge Functions, config
-│   ├── migrations/         # SQL migrations (schema, RLS, RPCs)
-│   ├── seed.sql            # Local dev seed data
-│   ├── functions/          # Edge Functions
-│   └── config.toml         # Supabase CLI config
-├── .env.example            # Environment variable template (copy to .env.local)
-├── .env.local              # Local Supabase credentials (gitignored, never commit)
-├── .gitignore              # Ignores .env.local, dist/, supabase/.temp/, node_modules
-├── eslint.config.mjs       # ESLint flat config
-├── .prettierrc             # Prettier formatting config
-├── package.json            # Scripts: dev, build, lint, lint:fix, preview
-└── README.md               # This file
-```
+The project is being developed with a focus on usability, business-level data isolation, secure authentication, and a clean, responsive interface.
 
-## Setup
+Table of Contents
 
-### 1. Install dependencies
+- "Overview" (#overview)
+- "Key Features" (#key-features)
+- "User Roles" (#user-roles)
+- "Technology Stack" (#technology-stack)
+- "Project Structure" (#project-structure)
+- "Prerequisites" (#prerequisites)
+- "Installation and Setup" (#installation-and-setup)
+- "Environment Configuration" (#environment-configuration)
+- "Database and Security" (#database-and-security)
+- "Running the Application" (#running-the-application)
+- "Development Status" (#development-status)
+- "Future Improvements" (#future-improvements)
+- "License" (#license)
 
-```powershell
+Overview
+
+Traditional loyalty programs often rely on physical stamp cards or separate systems for each business. LoyalLoop aims to provide a shared digital platform where customers can participate in loyalty programs from multiple businesses using a single account.
+
+Businesses such as cafés, salons, gyms, and other local services can manage their own loyalty programs, while customers can discover participating businesses, collect stamps, track rewards, and view available offers.
+
+Each business should only be able to access its own authorized business data.
+
+Key Features
+
+Multi-Business Support
+
+- Support multiple businesses on a single platform.
+- Maintain separate business profiles, loyalty programs, offers, staff, and customer memberships.
+- Provide business-specific branding and customer experiences.
+
+Digital Loyalty Cards
+
+- Allow customers to join individual business loyalty programs.
+- Support multiple business memberships under one customer account.
+- Display membership details and stamp progress.
+- Track eligible rewards and redeemed items.
+
+Stamp Collection and Rewards
+
+- Allow authorized staff to record customer stamps.
+- Define loyalty rules for individual businesses.
+- Support reward redemption by authorized personnel.
+- Maintain transaction records for stamps and redemptions.
+
+Business Management
+
+- Allow business owners to configure business details and branding.
+- Manage staff access and permissions.
+- Configure loyalty programs, reward rules, and offers.
+- Provide a foundation for business dashboards and activity tracking.
+
+Offers
+
+- Support business-specific promotional offers.
+- Make public offers available for customers to view without necessarily signing in.
+- Keep offer management restricted to authorized business users.
+
+Authentication and Authorization
+
+- Use Supabase Authentication for account registration and login.
+- Support separate experiences for platform administrators, business owners, staff, and customers.
+- Use role and membership checks to control access to protected areas.
+
+User Roles
+
+Role| Intended responsibilities
+Platform Admin| Manage and authorize businesses and platform access.
+Business Owner| Manage business details, branding, staff, loyalty rules, and offers.
+Staff| Register customers, add stamps, and process authorized redemptions.
+Customer| Join businesses, view loyalty cards, track stamps, and access rewards and offers.
+
+Access to business information and actions must be restricted according to the authenticated user's permissions.
+
+Technology Stack
+
+- Frontend: HTML, CSS, JavaScript
+- Development server and build tooling: Vite
+- Backend services: Supabase
+- Authentication: Supabase Auth
+- Database: PostgreSQL through Supabase
+- Database security: PostgreSQL Row Level Security (RLS)
+- Version control: Git and GitHub
+
+Project Structure
+
+The project includes frontend pages, application scripts, styling, and Supabase database configuration.
+
+Loyalloop/
+├── admin/
+│   └── dashboard/
+├── owner/
+│   └── dashboard/
+├── staff/
+│   └── dashboard/
+├── customer/
+│   ├── dashboard/
+│   └── business/
+├── supabase/
+│   ├── migrations/
+│   ├── tests/
+│   └── seed.sql
+├── index.html
+├── login.html
+├── register.html
+├── app.js
+├── supabase.js
+├── .env.example
+├── .gitignore
+├── package.json
+└── README.md
+
+This is a simplified overview. Refer to the repository for the complete directory structure.
+
+Prerequisites
+
+Install the following before running the application:
+
+- "Node.js" (https://nodejs.org/) with npm
+- "Git" (https://git-scm.com/)
+- "Visual Studio Code" (https://code.visualstudio.com/) or another code editor
+- A "Supabase" (https://supabase.com/) account and project
+
+Installation and Setup
+
+1. Clone the Repository
+
+git clone https://github.com/abhiramipoornimma/Loyalloop.git
+cd Loyalloop
+
+If you already have the project locally, open its existing folder instead.
+
+2. Install Dependencies
+
 npm install
-```
 
-### 2. Configure Supabase
+3. Configure Environment Variables
 
-Copy the example env file and fill in your Supabase project credentials:
+Create a ".env.local" file in the project root. Refer to ".env.example" and the variable names used by the application to configure the required Supabase URL and publishable/anonymous key.
 
-```powershell
-copy .env.example .env.local
-```
+Do not copy real credentials into this README or commit ".env.local" to Git.
 
-Edit `.env.local`:
+4. Configure Supabase
 
-```
-VITE_SUPABASE_URL=https://your-project-ref.supabase.co
-VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
-```
+- Create or open your Supabase project.
+- Verify the project URL and public client key.
+- Apply the database migrations in the "supabase/migrations/" directory using the project's established migration workflow.
+- Review the database policies and authorization tests before using real customer data.
 
-Find these values in your Supabase project Settings → API. Only the anon key is used in the browser; never put a `service_role` key in `.env.local`.
+5. Start the Development Server
 
-### 3. Apply database migrations
-
-**Local development (Supabase CLI):**
-
-```powershell
-supabase start
-supabase db reset
-```
-
-`seed.sql` provisions sample businesses, loyalty programs, reward rules, and offers. Auth users (admin, owner, staff, customers) must be created via the signup page or Supabase Auth dashboard, then linked through the admin/owner workflows.
-
-**Hosted Supabase project:** Apply the migrations in `supabase/migrations/` in order through the Supabase SQL Editor, then run `seed.sql`.
-
-### 4. Run the dev server
-
-```powershell
 npm run dev
-```
 
-Visit `http://localhost:5173` (or the port Vite reports).
+Vite will display a local development URL in the terminal, commonly "http://localhost:5173/". Open the URL shown by your terminal in a browser.
 
-### Other npm scripts
+Environment Configuration
 
-| Script | Purpose |
-|--------|---------|
-| `npm run dev` | Start Vite dev server with dashboard route rewrites |
-| `npm run build` | Production build via Vite |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint` | ESLint on source files |
-| `npm run lint:fix` | ESLint with auto-fix |
+Environment variable names must match those referenced by the existing frontend code.
 
-## How it works
+Typical configuration values include:
 
-### Roles and dashboards
+Variable| Purpose
+Supabase project URL| Identifies the Supabase project.
+Supabase publishable or anonymous key| Allows the frontend to communicate with Supabase under configured access policies.
 
-| Role | Path | Purpose |
-|------|------|---------|
-| Platform admin | `/admin/dashboard/` | Review business applications, manage businesses |
-| Business owner | `/owner/dashboard/` | Branding, reward rules, staff, customers, redemptions |
-| Staff | `/staff/dashboard/` | Search customers, add stamps, redeem rewards |
-| Customer | `/customer/dashboard/` | View memberships, join programmes, loyalty cards |
-| Public (no auth) | `/b/:slug` | Public business loyalty page |
+Use ".env.example" to document the exact variable names required by the application.
 
-### Authentication and routing
+Never expose a Supabase service-role key or other secret credentials in frontend JavaScript, public environment variables, GitHub commits, or screenshots. A private repository does not replace proper secret management.
 
-`supabase.js` creates a single Supabase client using `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`. Every request carries the signed-in user's JWT. `app.js` handles sign-in, sign-up, password reset, and post-login routing:
+Database and Security
 
-- Platform admin → `/admin/dashboard/`
-- Business owner → `/owner/dashboard/`
-- Staff → `/staff/dashboard/`
-- Customer (no business membership) → `/customer/dashboard/`
-- No role → error message, contact an administrator
+LoyalLoop uses Supabase and PostgreSQL to support authentication, business records, loyalty memberships, stamp transactions, offers, and reward redemptions.
 
-Signup creates a `profiles` row and `customer_profiles` row via a database trigger (`provision_auth_user_profile`) — signup metadata never carries roles or permissions.
+The database configuration includes migrations and Row Level Security policies.
 
-### Key workflows
+Security goals include:
 
-- **Business application**: An owner applies via the sign-in page ("Wanna add your business to LoyalLoop?"). The applicant must register and confirm a LoyalLoop account using the business email. A platform admin reviews and approves the application; LoyalLoop then creates the business, branding, loyalty program, and grants owner access to the matching account atomically.
-- **Customer enrolment**: A signed-in customer joins a business's loyalty programme via the customer dashboard ("Join a Loyalty Programme") by entering the business slug.
-- **Staff customer enrolment**: Staff with `can_enroll_customers` can enroll an existing LoyalLoop customer in their assigned business by email. The customer must already have an account; cross-business enrollment is rejected.
-- **Staff invites**: Business owners invite staff via the staff management dialog. Requires the `invite-business-staff` Edge Function deployed with `SUPABASE_SERVICE_ROLE_KEY` and SMTP configured.
-- **Stamps and redemptions**: Staff award one stamp per customer action via `award_stamp`; staff redeem rewards via `redeem_reward`. Both use idempotency keys so repeated requests are safe.
-- **Password reset**: "Forgot password?" on the sign-in page sends a reset link via Supabase Auth.
+- Restricting business data to authorized users.
+- Preventing users from accessing another business's records by changing URLs or client requests.
+- Validating roles and business memberships at the database level.
+- Protecting administrative actions.
+- Keeping privileged credentials on trusted server-side systems only.
+- Testing authorization policies before production deployment.
 
-## Key decisions
+Frontend visibility checks alone are not sufficient security. Sensitive operations must be enforced by database policies or trusted server-side authorization.
 
-**Database-level authorization, not just UI-level:** Row Level Security (RLS) is enabled on all 15 public tables. The frontend never trusts the UI to hide data — every table read/write is gated by Postgres policies that check the caller's business membership.
+Running the Application
 
-**Security-definer RPCs for all privileged writes:** Direct client INSERT/UPDATE/DELETE on loyalty ledgers (`customer_loyalty_memberships`, `stamp_transactions`, `reward_redemptions`, `audit_logs`), `platform_admins`, and `customer_profiles` is revoked. All writes go through `security definer` functions (`enroll_customer`, `award_stamp`, `redeem_reward`, `publish_reward_rule`, `owner_save_business_settings`, etc.) that verify the caller's role before writing.
+For local development:
 
-**Private helper schema:** Authorization helpers (`has_business_role`, `has_business_permission`, `is_platform_admin`, `is_public_business`, `can_view_customer_profile`) live in `loyalloop_private`, a schema revoked from `public`/`anon`/`authenticated` and only granted `EXECUTE` to specific roles via policies. Functions use `set row_security = off` internally but always re-check `auth.uid()` against `business_memberships`.
+1. Open the project folder in VS Code.
+2. Open a terminal in the project directory.
+3. Run "npm install" if dependencies have not been installed.
+4. Confirm that the local environment variables are configured.
+5. Run "npm run dev".
+6. Open the URL printed by Vite.
 
-**No `service_role` in the browser:** The frontend client uses only the anon key + user JWT. The `service_role` key is used exclusively inside the `invite-business-staff` Edge Function (server-side Deno), never bundled into the frontend.
+Use a test Supabase project and non-production data while development is in progress.
 
-**Idempotency keys:** Enrollment, stamp awards, and redemptions require an idempotency key. Reusing a key for a different operation (different customer, different membership, different actor) raises an error instead of duplicating the write.
+Development Status
 
-**Storage isolation:** Business logos are stored in a private `business-logos` bucket under UUID-named folders. Storage policies require `has_business_role(folder_business_id, 'owner')` for writes and `is_public_business(...)` for reads. Path traversal (`..`) and malformed UUID folders are rejected.
+Status: Under active development.
 
-## Limitations
+The project contains the frontend, Supabase configuration, database migrations, and authentication integration. Some dashboard workflows and business operations may still require implementation, integration, and end-to-end testing.
 
-- **Subscriptions/billing is stubbed:** `business_subscriptions` table and RLS exist, but no billing provider workflow or payment integration is configured yet. The admin UI subscription section was removed pending a real provider.
-- **Email confirmation is disabled** in local `config.toml` (`enable_confirmations = false`). For production, enable double opt-in if email verification matters for your deployment.
-- **No re-enrollment after inactive status:** Once a customer membership is set to `inactive`, re-enrollment is intentionally unsupported and requires a future audited workflow.
-- **No unique purchase/visit reference:** Idempotency keys prevent exact duplicate RPC calls, but distinct keys can still represent duplicate visits. A unique purchase/visit reference would be needed to close that gap.
-- **Staff invites require SMTP + Edge Function deployment:** The `invite-business-staff` Edge Function must be deployed separately with `SUPABASE_SERVICE_ROLE_KEY` and SMTP configured; it is not part of the Vite build.
-- **Authorization test plan is not executable:** `supabase/tests/authorization_test_plan.sql` is a validation matrix for manual review, not an automated test suite.
-- **Local seed data only:** `seed.sql` is for local development. Auth users must be created separately through signup or the Auth dashboard.
+Before production use, verify registration, login, role assignment, business onboarding, customer enrollment, stamp collection, reward redemption, offers, and cross-business access restrictions.
 
-## Security features
+Future Improvements
 
-| Feature | Enforcement |
-|---------|-------------|
-| Row Level Security | Enabled on all 15 public tables |
-| No direct client writes on ledgers | INSERT/UPDATE/DELETE revoked on `customer_loyalty_memberships`, `stamp_transactions`, `reward_redemptions`, `audit_logs`, `platform_admins`, `customer_profiles` |
-| Business-scoped reads/writes | Policies gate on `has_business_role(business_id, ...)` / `has_business_permission(business_id, ...)` checked against `business_memberships` |
-| Platform admin gating | Admin-only functions require `is_platform_admin()`, provisioned out-of-band (never self-service) |
-| Private helper schema | `loyalloop_private` schema revoked from PUBLIC; helpers only executable via grant |
-| Security-definer RPCs | All privileged workflows run as the function owner but re-check `auth.uid()` and business membership |
-| Storage isolation | Logo bucket is private; writes require owner role on the matching business UUID folder; reads require public/approved business |
-| Idempotency keys | Enrollment, stamp awards, and redemptions reject reused keys across different operations |
-| No service_role in browser | Frontend uses anon key only; service_role confined to server-side Edge Function |
-| Column-level grants | Public business reads expose only `id, slug, display_name, category, status`; contacts and approval metadata are not granted to `anon` |
+Potential improvements include:
 
-## Cross-business isolation
+- Completing role-based dashboard workflows.
+- Connecting all dashboard actions to persistent database records.
+- Improving customer enrollment and business discovery.
+- Completing stamp and reward redemption flows.
+- Adding comprehensive automated authorization tests.
+- Improving accessibility and mobile responsiveness.
+- Preparing deployment configuration and production monitoring.
 
-Business A cannot see or change Business B's data through the screens, URL manipulation, or direct API calls:
+Contributing
 
-- **Screens**: Owner/staff dashboards call owner-staff RPCs that check `has_business_role(business_id, 'owner')` / `has_business_permission(business_id, ...)` for the business in context. Business A's credentials never satisfy Business B's checks.
-- **URL/ID substitution**: PostgREST applies the same RLS policies regardless of which row ID is in the URL. Without an active `business_memberships` row for Business B, all reads and writes on Business B's rows are denied.
-- **Direct API calls**: Same RLS enforcement applies. Security-definer RPCs validate the caller's business membership before any write; direct table writes on ledgers are revoked entirely.
+This repository is currently under development. Changes should preserve existing project conventions, database security policies, and the separation of data between businesses.
 
-The only exception is platform administrators, who can read all businesses by design (provisioned out-of-band, never self-service).
+License
+
+No license has been specified yet. All rights are reserved by default unless a license is added to the repository.
