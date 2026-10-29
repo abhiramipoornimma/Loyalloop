@@ -1,0 +1,168 @@
+[hidden] { display: none !important; }
+.customer-page { min-height: 100vh; background: #f4f2ec; color: var(--text); }
+.customer-topbar { display: flex; min-height: 72px; align-items: center; justify-content: space-between; gap: 24px; padding: 10px clamp(20px, 5vw, 65px); border-bottom: 1px solid #e8e5db; background: var(--cream); }
+.customer-wordmark { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 10px; color: var(--text); font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 1.38rem; letter-spacing: -.04em; text-decoration: none; }
+.customer-wordmark:hover { color: var(--deep-sage); }
+.customer-logo { width: 37px; height: 37px; }
+.customer-nav { display: flex; align-items: center; gap: 4px; }
+.customer-nav a { display: inline-flex; min-height: 37px; align-items: center; padding: 0 11px; border-radius: 7px; color: #6f756b; font-size: .72rem; text-decoration: none; white-space: nowrap; }
+.customer-nav a:hover, .customer-nav a.active { background: #e9ede6; color: var(--deep-sage); }
+.customer-nav a.active { font-weight: 650; }
+.customer-user { display: flex; flex: 0 0 auto; align-items: center; gap: 15px; }
+.customer-user-name { color: #454b42; font-size: .72rem; font-weight: 650; text-align: right; }
+.customer-user-name small { display: block; margin-top: 3px; color: #92968c; font-size: .48rem; font-weight: 750; letter-spacing: .1em; }
+.customer-user > a { color: var(--deep-sage); font-size: .69rem; font-weight: 650; text-decoration: none; white-space: nowrap; }
+.customer-user > a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.customer-main { width: min(100%, 1130px); padding: 25px clamp(18px, 4vw, 52px) 28px; margin: 0 auto; }
+.customer-demo-banner { display: flex; align-items: center; gap: 10px; padding: 10px 13px; border: 1px solid #e8e0ce; border-radius: 9px; background: #f4f0e6; }
+.customer-demo-banner > span { display: grid; width: 19px; height: 19px; flex: 0 0 19px; place-items: center; border-radius: 50%; background: #e9dfcb; color: #806941; font-family: Georgia, serif; font-size: .7rem; }
+.customer-demo-banner p { margin: 0; color: #77766e; font-size: .64rem; line-height: 1.45; }
+.customer-demo-banner strong { color: #6d5b3b; font-weight: 700; }
+.customer-welcome { padding: 39px 0 31px; }
+.customer-eyebrow { margin: 0; color: #87927c; font-size: .57rem; font-weight: 750; letter-spacing: .15em; }
+.customer-welcome h1, .business-hero h1 { margin: 8px 0 7px; color: #30372e; font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 500; letter-spacing: -.05em; line-height: 1.08; }
+.customer-welcome > p:last-child { margin: 0; color: #73796f; font-size: .82rem; }
+.customer-section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 15px; margin-bottom: 15px; }
+.customer-section-heading h2 { margin: 5px 0 4px; color: #343a32; font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 1.55rem; font-weight: 500; letter-spacing: -.035em; }
+.customer-section-heading > div > p:last-child { margin: 0; color: #81867b; font-size: .69rem; line-height: 1.5; }
+.customer-demo-chip, .readonly-tag { padding: 5px 8px; border-radius: 99px; background: #e9ede6; color: #64745e; font-size: .52rem; font-weight: 750; letter-spacing: .08em; white-space: nowrap; }
+.membership-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.membership-card { --business-background: #f8f6f0; --business-primary: #879780; --business-secondary: #ede6d7; --business-text: #292d28; --business-ink: #566b55; overflow: hidden; border: 1px solid color-mix(in srgb, var(--business-primary), transparent 75%); border-radius: 13px; background: #fbfaf6; box-shadow: 0 5px 17px rgb(50 57 46 / 3%); }
+.membership-card-banner { display: flex; align-items: center; gap: 11px; padding: 15px 16px 13px; background: var(--business-background); color: var(--business-text); }
+.membership-logo { display: grid; width: 42px; height: 42px; flex: 0 0 42px; place-items: center; overflow: hidden; border: 1px solid color-mix(in srgb, var(--business-primary), transparent 62%); border-radius: 12px; background: var(--business-secondary); color: var(--business-ink); font-family: Georgia, serif; font-size: 1.08rem; }
+.membership-logo img { width: 100%; height: 100%; object-fit: cover; }
+.membership-heading-copy { min-width: 0; flex: 1; }
+.membership-heading-copy small { display: block; margin-bottom: 3px; color: var(--business-ink); font-size: .52rem; font-weight: 750; letter-spacing: .1em; }
+.membership-heading-copy h3 { overflow: hidden; margin: 0; color: var(--business-text); font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 1.18rem; font-weight: 500; letter-spacing: -.025em; text-overflow: ellipsis; white-space: nowrap; }
+.membership-active { display: inline-flex; align-items: center; gap: 5px; padding: 5px 7px; border-radius: 99px; background: rgb(255 255 255 / 63%); color: var(--business-ink); font-size: .53rem; font-weight: 650; white-space: nowrap; }
+.membership-active i { width: 6px; height: 6px; border-radius: 50%; background: #6f8b67; }
+.membership-card-body { padding: 13px 16px 15px; }
+.membership-description { overflow: hidden; min-height: 31px; margin: 0 0 13px; color: #777d72; font-size: .67rem; line-height: 1.5; text-overflow: ellipsis; }
+.membership-progress-row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.membership-progress-row span { color: #6b7267; font-size: .62rem; }
+.membership-progress-row strong { color: var(--business-ink); font-size: .65rem; font-weight: 700; white-space: nowrap; }
+.membership-progress-track { height: 5px; overflow: hidden; border-radius: 99px; background: #e9e9e1; }
+.membership-progress-track span { display: block; height: 100%; border-radius: inherit; background: var(--business-primary); }
+.membership-reward-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 0 12px; }
+.membership-reward-copy small, .membership-reward-copy strong { display: block; }
+.membership-reward-copy small { margin-bottom: 3px; color: #9a9c92; font-size: .5rem; font-weight: 750; letter-spacing: .08em; }
+.membership-reward-copy strong { color: #555c52; font-family: "Iowan Old Style", Georgia, serif; font-size: .85rem; font-weight: 500; }
+.membership-reward-count { flex: 0 0 auto; padding: 6px 8px; border: 1px solid #e3e8df; border-radius: 7px; background: #f4f6f0; color: #61745b; font-size: .56rem; font-weight: 650; text-align: center; }
+.membership-reward-count.available { border-color: #d5e1cf; background: #edf3e9; color: #4f684b; }
+.membership-card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 10px; border-top: 1px solid #efede7; }
+.membership-card-bottom > span { color: #83877d; font-size: .59rem; }
+.membership-view-link, .customer-button { display: inline-flex; min-height: 34px; align-items: center; justify-content: center; gap: 8px; padding: 0 11px; border: 1px solid #dce2d8; border-radius: 7px; background: #f2f5ef; color: var(--deep-sage); font-size: .62rem; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background-color 140ms ease, transform 140ms ease; }
+.membership-view-link:hover, .customer-button:hover { transform: translateY(-1px); background: #e8eee5; }
+.membership-view-link:focus-visible, .customer-button:focus-visible, .customer-nav a:focus-visible, .customer-user a:focus-visible, .back-businesses-link:focus-visible { outline: 3px solid rgb(86 107 85 / 27%); outline-offset: 2px; }
+.membership-empty { display: grid; min-height: 200px; align-content: center; justify-items: center; padding: 20px; border: 1px dashed #d9ddd3; border-radius: 13px; background: #faf9f5; text-align: center; }
+.membership-empty[hidden] { display: none; }
+.membership-empty > span { color: #879780; font-size: 1.3rem; }
+.membership-empty h3 { margin: 8px 0 4px; color: #41483e; font-family: "Iowan Old Style", Georgia, serif; font-size: 1.25rem; font-weight: 500; }
+.membership-empty p { max-width: 370px; margin: 0; color: #85897f; font-size: .68rem; line-height: 1.55; }
+.customer-account-section { padding-top: 35px; }
+.customer-account-section .customer-section-heading { margin-bottom: 10px; }
+.account-card { display: flex; align-items: center; gap: 12px; padding: 13px 15px; border: 1px solid #e7e5dc; border-radius: 11px; background: #fbfaf6; }
+.account-avatar { display: grid; width: 37px; height: 37px; flex: 0 0 37px; place-items: center; border-radius: 50%; background: #e2e9de; color: #566b55; font-family: Georgia, serif; }
+.account-card > div { min-width: 0; flex: 1; }
+.account-card > div strong { color: #444a41; font-size: .73rem; font-weight: 650; }
+.account-card > div p { margin: 4px 0 0; color: #858a80; font-size: .62rem; }
+.account-status { padding: 5px 7px; border-radius: 99px; background: #efeee8; color: #7d8077; font-size: .55rem; white-space: nowrap; }
+.customer-footer { padding: 25px 0 0; color: #999b92; font-size: .61rem; text-align: center; }
+
+/* Business-specific member space */
+.business-customer-nav { gap: 1px; }
+.business-customer-nav a { padding-inline: 8px; font-size: .65rem; }
+.business-main { padding-top: 18px; }
+.back-businesses-link { display: inline-flex; align-items: center; gap: 7px; margin: 19px 0 13px; color: #60725b; font-size: .68rem; font-weight: 650; text-decoration: none; }
+.back-businesses-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.business-hero { --business-background: #f8f6f0; --business-primary: #879780; --business-text: #292d28; display: flex; align-items: center; gap: 16px; padding: 20px; border: 1px solid color-mix(in srgb, var(--business-primary), transparent 78%); border-radius: 14px; background: var(--business-background); color: var(--business-text); }
+.business-logo-wrap { display: grid; width: 65px; height: 65px; flex: 0 0 65px; place-items: center; overflow: hidden; border: 1px solid color-mix(in srgb, var(--business-primary), transparent 58%); border-radius: 18px; background: #fffefa; color: var(--business-primary); font-family: Georgia, serif; font-size: 1.5rem; }
+.business-logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
+.business-hero-copy { min-width: 0; flex: 1; }
+.business-hero h1 { margin: 4px 0 4px; color: var(--business-text); font-size: clamp(1.8rem, 4vw, 2.35rem); }
+.business-hero-copy > p:not(.customer-eyebrow) { margin: 0; color: var(--business-text); font-size: .75rem; opacity: .76; }
+.business-membership-status { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 5px 8px; border: 1px solid color-mix(in srgb, var(--business-primary), transparent 80%); border-radius: 99px; background: rgb(255 255 255 / 62%); color: var(--business-text); font-size: .56rem; font-weight: 650; }
+.business-membership-status i { width: 6px; height: 6px; border-radius: 50%; background: #698863; }
+.business-demo-label { align-self: flex-start; padding: 5px 7px; border-radius: 99px; background: rgb(255 255 255 / 65%); color: var(--business-text); font-size: .5rem; font-weight: 750; letter-spacing: .07em; white-space: nowrap; }
+.business-intro { display: flex; justify-content: space-between; gap: 15px; padding: 15px 2px 4px; color: #73796f; font-size: .68rem; }
+.business-intro p { margin: 0; line-height: 1.5; }
+.business-intro strong { color: #50594d; font-weight: 650; }
+.customer-business-section { padding-top: 26px; scroll-margin-top: 18px; }
+.section-context { color: #858a80; font-size: .64rem; }
+.loyalty-card-display { --business-primary: #879780; --business-secondary: #ede6d7; --business-ink: #566b55; padding: 21px; border: 1px solid color-mix(in srgb, var(--business-primary), transparent 55%); border-radius: 17px; background: var(--business-ink); color: #fffdf6; box-shadow: 0 13px 36px color-mix(in srgb, var(--business-ink), transparent 80%); }
+.loyalty-card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.loyalty-business-identity { display: flex; min-width: 0; align-items: center; gap: 9px; }
+.loyalty-logo-mark { display: grid; width: 34px; height: 34px; flex: 0 0 34px; place-items: center; overflow: hidden; border-radius: 10px; background: var(--business-secondary); color: var(--business-ink); font-family: Georgia, serif; font-size: .9rem; }
+.loyalty-logo-mark img { width: 100%; height: 100%; object-fit: cover; }
+.loyalty-business-identity strong, .loyalty-business-identity small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.loyalty-business-identity strong { font-family: "Iowan Old Style", Georgia, serif; font-size: .96rem; font-weight: 500; }
+.loyalty-business-identity small { margin-top: 3px; color: rgb(255 253 246 / 70%); font-size: .48rem; font-weight: 700; letter-spacing: .1em; }
+.card-status { padding: 5px 7px; border: 1px solid rgb(255 253 246 / 28%); border-radius: 99px; color: #fffdf6; font-size: .48rem; font-weight: 750; letter-spacing: .08em; }
+.loyalty-card-customer { display: grid; gap: 4px; margin-top: 19px; }
+.loyalty-card-customer span, .stamps-caption, .loyalty-reward-summary > span { color: rgb(255 253 246 / 67%); font-size: .48rem; font-weight: 700; letter-spacing: .1em; }
+.loyalty-card-customer strong { font-family: "Iowan Old Style", Georgia, serif; font-size: 1.15rem; font-weight: 500; }
+.loyalty-progress-copy { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin: 18px 0 8px; }
+.loyalty-progress-copy > div { display: grid; gap: 4px; }
+.loyalty-progress-copy > div > strong { font-size: .82rem; font-weight: 650; }
+.loyalty-progress-copy > span { color: rgb(255 253 246 / 82%); font-size: .6rem; text-align: right; }
+.loyalty-progress-track { height: 6px; overflow: hidden; border-radius: 99px; background: rgb(255 253 246 / 22%); }
+.loyalty-progress-track > span { display: block; height: 100%; border-radius: inherit; background: var(--business-secondary); transition: width 180ms ease; }
+.loyalty-stamps { display: grid; grid-template-columns: repeat(10, minmax(23px, 34px)); justify-content: space-between; gap: 7px; margin: 16px 0 17px; }
+.loyalty-stamp { display: grid; aspect-ratio: 1; place-items: center; border: 1px solid rgb(255 253 246 / 43%); border-radius: 50%; color: #fffdf6; font-size: .65rem; }
+.loyalty-stamp.earned { border-color: var(--business-secondary); background: var(--business-secondary); color: var(--business-ink); }
+.loyalty-reward-summary { padding: 11px 12px; border: 1px solid rgb(255 253 246 / 23%); border-radius: 9px; background: rgb(255 253 246 / 8%); }
+.loyalty-reward-summary > span, .loyalty-reward-summary strong { display: block; }
+.loyalty-reward-summary strong { margin-top: 4px; font-family: "Iowan Old Style", Georgia, serif; font-size: .98rem; font-weight: 500; }
+.loyalty-reward-summary p { margin: 3px 0 0; color: rgb(255 253 246 / 76%); font-size: .61rem; line-height: 1.45; }
+.customer-reward-status { display: flex; align-items: center; gap: 9px; padding: 11px 12px; margin-top: 10px; border: 1px solid #e4e6dc; border-radius: 9px; background: #fbfaf6; color: #6e746a; font-size: .66rem; }
+.customer-reward-status strong { color: #55674f; }
+.customer-reward-status.available { border-color: #d9e3d5; background: #f1f5ee; }
+.customer-readonly-note { margin: 8px 1px 0; color: #93968d; font-size: .6rem; }
+.rewards-history-panel { overflow: hidden; border: 1px solid #e7e5dc; border-radius: 11px; background: #fbfaf6; }
+.rewards-history-list { display: grid; }
+.reward-history-row { display: grid; grid-template-columns: 35px minmax(0, 1.3fr) minmax(120px, .8fr) auto; align-items: center; gap: 12px; padding: 13px 15px; border-bottom: 1px solid #efede7; }
+.reward-history-row:last-child { border-bottom: 0; }
+.reward-history-icon { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 10px; background: #edf0e9; color: #63765d; }
+.reward-history-name strong, .reward-history-name small { display: block; }
+.reward-history-name strong { color: #4a5047; font-family: "Iowan Old Style", Georgia, serif; font-size: .9rem; font-weight: 500; }
+.reward-history-name small, .reward-history-date { margin-top: 3px; color: #92958c; font-size: .58rem; }
+.reward-history-status { padding: 5px 7px; border-radius: 99px; background: #edf1e9; color: #5f7559; font-size: .53rem; font-weight: 700; white-space: nowrap; }
+.customer-empty-inline { display: grid; min-height: 155px; align-content: center; justify-items: center; padding: 20px; color: #82877d; text-align: center; }
+.customer-empty-inline[hidden] { display: none; }
+.customer-empty-inline > span { margin-bottom: 6px; color: #8e9d87; font-size: 1.1rem; }
+.customer-empty-inline strong { color: #586052; font-family: "Iowan Old Style", Georgia, serif; font-size: .98rem; font-weight: 500; }
+.customer-empty-inline p { margin: 4px 0 0; font-size: .64rem; }
+.customer-offers-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
+.customer-offers-grid:empty { display: none; }
+.customer-offer-card { position: relative; padding: 15px 16px; border: 1px solid #e7e5dc; border-radius: 11px; background: #fbfaf6; }
+.customer-offer-card.active { border-color: color-mix(in srgb, var(--offer-primary, #879780), #e7e5dc 68%); }
+.customer-offer-card.active::before { position: absolute; inset: 0 auto 0 0; width: 3px; border-radius: 11px 0 0 11px; background: var(--offer-primary, #879780); content: ""; }
+.customer-offer-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 9px; }
+.customer-offer-heading h3 { margin: 0; color: #42493f; font-family: "Iowan Old Style", Georgia, serif; font-size: .98rem; font-weight: 500; }
+.offer-status-label { flex: 0 0 auto; padding: 4px 6px; border-radius: 99px; background: #edf1e9; color: #5e7358; font-size: .5rem; font-weight: 700; }
+.offer-status-label.scheduled { background: #f3eee3; color: #8a7148; }
+.offer-status-label.expired { background: #efeee9; color: #82847c; }
+.customer-offer-benefit { margin: 7px 0 4px; color: #5c7057; font-size: .65rem; font-weight: 700; }
+.customer-offer-description, .customer-offer-meta { margin: 0; color: #82877d; font-size: .62rem; line-height: 1.5; }
+.customer-offer-meta { padding-top: 7px; margin-top: 8px; border-top: 1px solid #efede7; color: #999b92; font-size: .56rem; }
+.membership-denied { display: grid; min-height: 100vh; place-content: center; justify-items: center; gap: 23px; padding: 24px; background: #f4f2ec; }
+.membership-denied[hidden] { display: none; }
+.membership-denied-card { display: grid; max-width: 440px; justify-items: center; padding: 31px; border: 1px solid #e5e3d9; border-radius: 15px; background: #fbfaf6; text-align: center; box-shadow: 0 10px 35px rgb(43 49 40 / 5%); }
+.membership-denied-card > span { display: grid; width: 43px; height: 43px; place-items: center; margin-bottom: 13px; border-radius: 13px; background: #edf0e9; color: #65785f; font-size: 1.15rem; }
+.membership-denied-card h1 { margin: 7px 0; color: #343a32; font-family: "Iowan Old Style", Georgia, serif; font-size: 1.7rem; font-weight: 500; letter-spacing: -.035em; }
+.membership-denied-card > p:not(.customer-eyebrow) { margin: 0 0 17px; color: #7e8379; font-size: .72rem; line-height: 1.55; }
+.membership-denied-card .customer-button { min-height: 39px; }
+.membership-denied-card > small { margin-top: 12px; color: #999b92; font-size: .57rem; }
+
+.enrol-panel { border: 1px solid #e7e5dc; border-radius: 11px; background: #fbfaf6; padding: 18px 18px 14px; max-width: 420px; }
+.enrol-panel .customer-search-form { display: flex; flex-direction: column; gap: 10px; }
+.enrol-panel .customer-search-form label { margin: 0; font-size: .72rem; font-weight: 650; color: var(--text); }
+.enrol-panel .search-input-wrap { position: relative; display: flex; gap: 6px; align-items: center; }
+.enrol-panel .search-input-wrap input { flex: 1; min-height: 40px; padding: 0 11px; border: 1px solid #d9d8cd; border-radius: 8px; background: #fffefa; color: var(--text); font: inherit; font-size: .86rem; }
+.enrol-panel .search-input-wrap span { color: #73796f; }
+.enrol-panel #enrol-message { margin: 8px 0 0; font-size: .72rem; line-height: 1.45; color: #8b433b; min-height: 1.45em; }
+
+@media (max-width: 900px) { .customer-topbar { gap: 12px; padding-inline: 19px; } .business-customer-nav a { padding-inline: 6px; font-size: .6rem; } .customer-user { gap: 9px; } }
+@media (max-width: 720px) { .customer-topbar { display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; padding: 10px 15px 8px; } .customer-wordmark { gap: 7px; font-size: 1.18rem; } .customer-logo { width: 32px; height: 32px; } .customer-user { grid-column: 2; grid-row: 1; } .customer-user-name { display: none; } .customer-user > a { font-size: .67rem; } .customer-nav { grid-column: 1 / -1; grid-row: 2; overflow-x: auto; gap: 2px; padding-bottom: 2px; scrollbar-width: thin; } .customer-nav a { min-height: 33px; flex: 0 0 auto; padding-inline: 9px; font-size: .66rem; } .business-customer-nav { grid-column: 1 / -1; grid-row: 2; } .business-customer-nav a { font-size: .63rem; } .customer-main { padding: 15px 14px 21px; } .customer-demo-banner { align-items: flex-start; padding: 9px 10px; } .customer-demo-banner p { font-size: .6rem; } .customer-welcome { padding: 29px 0 24px; } .customer-welcome h1 { font-size: 2.15rem; } .customer-welcome > p:last-child { font-size: .75rem; } .customer-section-heading { align-items: flex-start; } .customer-section-heading h2 { font-size: 1.4rem; } .customer-section-heading > div > p:last-child { font-size: .64rem; } .membership-grid { grid-template-columns: 1fr; gap: 10px; } .membership-card-banner { padding: 13px; } .membership-card-body { padding: 12px 13px 13px; } .customer-account-section { padding-top: 28px; } .business-main { padding-top: 13px; } .back-businesses-link { margin: 14px 0 10px; } .business-hero { align-items: flex-start; gap: 11px; padding: 15px; } .business-logo-wrap { width: 52px; height: 52px; flex-basis: 52px; border-radius: 14px; font-size: 1.2rem; } .business-hero h1 { font-size: 1.85rem; } .business-hero-copy > p:not(.customer-eyebrow) { font-size: .67rem; line-height: 1.45; } .business-demo-label { position: absolute; top: -1000px; } .business-intro { display: grid; gap: 5px; padding: 12px 1px 0; font-size: .63rem; } .customer-business-section { padding-top: 22px; } .loyalty-card-display { padding: 17px; } .loyalty-stamps { grid-template-columns: repeat(5, 1fr); justify-items: center; gap: 8px; } .loyalty-stamp { width: min(100%, 36px); } .reward-history-row { grid-template-columns: 32px minmax(0, 1fr) auto; gap: 9px; padding: 11px; } .reward-history-date { grid-column: 2; margin-top: -3px; } .reward-history-status { grid-column: 3; grid-row: 1 / span 2; } .customer-offers-grid { grid-template-columns: 1fr; gap: 8px; } .account-card { align-items: flex-start; padding: 12px; } .account-card > div p { line-height: 1.4; } }
+@media (max-width: 380px) { .membership-active { padding: 4px 6px; font-size: .49rem; } .membership-logo { width: 37px; height: 37px; flex-basis: 37px; } .membership-heading-copy h3 { font-size: 1.05rem; } .membership-card-bottom { align-items: flex-start; flex-direction: column; } .customer-welcome h1 { font-size: 1.9rem; } .business-hero { flex-wrap: wrap; } .business-hero-copy { min-width: calc(100% - 68px); } .business-intro { font-size: .61rem; } .loyalty-progress-copy > span { max-width: 120px; font-size: .55rem; } .account-status { font-size: .5rem; } }
+@media (prefers-reduced-motion: reduce) { .membership-view-link, .customer-button, .loyalty-progress-track > span { transition: none; } }

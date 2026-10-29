@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F8F6F0" />
+    <title>Business Loyalty Page | LoyalLoop</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="public.css" />
+    <script type="module" src="public.js"></script>
+  </head>
+  <body class="public-business-page">
+    <header class="public-topbar"><a class="public-wordmark" href="../index.html">LoyalLoop</a><a class="back-to-owner" href="../owner/dashboard/">Business owner sign in</a></header>
+    <main class="public-main">
+      <p class="public-demo-note"><span></span> Loading business details…</p>
+      <article class="public-business-card" id="public-business-card" hidden>
+        <div class="public-logo-fallback" id="public-logo-fallback">L</div>
+        <img class="public-logo-image" id="public-logo-image" alt="Business logo" hidden />
+        <p class="public-kicker" id="public-theme-name">SAGE & CREAM</p>
+        <h1 id="public-business-name">Business</h1>
+        <p class="public-welcome" id="public-welcome"></p>
+        <p class="public-description" id="public-description"></p>
+        <section class="public-loyalty-card" aria-labelledby="public-reward-name">
+          <div class="public-card-heading"><span id="public-card-business">Business</span><span>LOYALTY CARD</span></div>
+          <p class="public-progress-label" id="public-progress-label"></p>
+          <div class="public-stamps" id="public-stamps"></div>
+          <div class="public-reward-box"><span>YOUR REWARD</span><h2 id="public-reward-name">A Little Something</h2><p id="public-reward-description"></p></div>
+        </section>
+      </article>
+      <p class="public-programme-status" id="public-programme-status" role="status" aria-live="polite"></p>
+      <p class="public-footer">Every visit brings you closer.</p>
+    </main>
+  </body>
+</html>

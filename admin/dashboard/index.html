@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F8F6F0" />
+    <title>Platform Administration | LoyalLoop</title>
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+    <script type="module" src="admin-auth.js"></script>
+  </head>
+  <body class="dashboard-page">
+    <main class="admin-auth-gate" id="admin-auth-status" role="status" aria-live="polite">
+      <section class="admin-auth-card" aria-labelledby="admin-auth-title">
+        <p class="eyebrow">LOYALLOOP ADMIN</p>
+        <h1 id="admin-auth-title">Loading admin dashboard</h1>
+        <p id="admin-auth-message">Please wait while the dashboard opens.</p>
+        <a id="admin-auth-return" href="../../login.html" hidden>Return to Sign In</a>
+      </section>
+    </main>
+    <div class="dashboard-shell" id="admin-dashboard" hidden>
+      <aside class="sidebar">
+        <a class="dashboard-brand" href="../../index.html" aria-label="LoyalLoop home">
+          <svg class="dashboard-logo" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+            <path d="M16 34h48v33H16z" fill="#879780" stroke="#566B55" stroke-width="2" stroke-linejoin="round" />
+            <path d="M12 25h56v11H12z" fill="#566B55" />
+            <path d="M37 25v42" stroke="#EDE6D7" stroke-width="6" />
+            <path d="M40 25c-2-10-16-14-19-7-3 7 6 11 19 7Zm0 0c2-10 16-14 19-7 3 7-6 11-19 7Z" fill="#EDE6D7" stroke="#566B55" stroke-width="2" stroke-linejoin="round" />
+            <path d="m67 12 1.4 3.6L72 17l-3.6 1.4L67 22l-1.4-3.6L62 17l3.6-1.4L67 12Z" fill="#879780" />
+          </svg>
+          <span>LoyalLoop</span>
+        </a>
+        <div class="sidebar-caption">PLATFORM</div>
+        <nav class="dashboard-nav" aria-label="Admin dashboard">
+          <a href="#overview" class="active"><span class="nav-symbol">⌂</span>Overview</a>
+          <a href="#manage-businesses"><span class="nav-symbol">▤</span>Manage Businesses</a>
+          <a href="#user-details"><span class="nav-symbol">♧</span>User Details</a>
+          <a href="#new-requests"><span class="nav-symbol">✉</span>New Requests <span class="nav-count" id="nav-request-count">0</span></a>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="admin-profile"><span class="avatar">A</span><span><strong>Platform administrator</strong><small>Authorized account</small></span></div>
+          <a class="logout-link" href="../../login.html" data-admin-signout>↩ <span>Logout</span></a>
+        </div>
+      </aside>
+
+      <main class="dashboard-main">
+        <header class="topbar">
+          <div class="breadcrumb">LoyalLoop <span>/</span> Administration</div>
+          <a class="top-logout" href="../../login.html" data-admin-signout>Logout</a>
+        </header>
+
+        <div class="dashboard-content">
+          <div class="demo-banner" id="dashboard-data-note" role="status" aria-live="polite"><span class="demo-dot"></span><div><strong>Live data view</strong><span>Loading records permitted by your Supabase access…</span></div></div>
+
+          <section class="dashboard-section overview-section" id="overview">
+            <div class="page-heading"><div><p class="eyebrow">LOYALLOOP ADMIN</p><h1>Platform Administration</h1><p class="section-subtitle">A clear view of your loyalty network.</p></div></div>
+            <div class="summary-grid" id="summary-grid" aria-live="polite"></div>
+          </section>
+
+          <section class="dashboard-section" id="manage-businesses">
+            <div class="section-heading"><div><p class="eyebrow">BUSINESS DIRECTORY</p><h2>Manage Businesses</h2><p class="section-subtitle">Review business records and manage status through authorized workflows.</p></div></div>
+            <div class="panel">
+              <div class="panel-toolbar"><div><h3>All businesses</h3><p id="business-count">0 businesses</p></div><label class="search-box"><span aria-hidden="true">⌕</span><input id="business-search" type="search" placeholder="Search businesses" aria-label="Search businesses" /></label></div>
+              <div class="table-wrap"><table><thead><tr><th>Business</th><th>Category</th><th>Owner</th><th>Status</th><th><span class="sr-only">Action</span></th></tr></thead><tbody id="business-table"></tbody></table></div>
+              <p class="empty-state" id="business-empty" hidden>No businesses match your search.</p>
+            </div>
+          </section>
+
+          <section class="dashboard-section" id="user-details">
+            <div class="section-heading"><div><p class="eyebrow">PEOPLE</p><h2>User Details</h2><p class="section-subtitle">Demo account records by role. Passwords and secrets are never shown.</p></div></div>
+            <div class="panel">
+              <div class="panel-toolbar user-toolbar"><div><h3 id="user-table-title">Business Owners</h3><p id="user-count">0 users</p></div><div class="user-tools"><label class="search-box"><span aria-hidden="true">⌕</span><input id="user-search" type="search" placeholder="Search users" aria-label="Search users" /></label><label class="filter-select"><span class="sr-only">Filter users by role</span><select id="user-role"><option value="Business Owner" selected>Business Owners</option><option value="Platform Admin">Platform Admins</option><option value="Staff">Staff</option><option value="Customer">Customers</option><option value="All">All roles</option></select></label></div></div>
+              <div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Business</th><th>Status</th><th>Registered</th></tr></thead><tbody id="user-table"></tbody></table></div>
+              <p class="empty-state" id="user-empty" hidden>No users match your search.</p>
+            </div>
+          </section>
+
+          <section class="dashboard-section" id="new-requests">
+            <div class="section-heading"><div><p class="eyebrow">INBOX</p><h2>New Requests</h2><p class="section-subtitle">Open requests, review their details, and prepare a reply.</p></div></div>
+            <div class="panel">
+              <div class="panel-toolbar"><div><h3>Business applications</h3><p id="request-count">0 applications</p></div><label class="search-box"><span aria-hidden="true">⌕</span><input id="request-search" type="search" placeholder="Search applications" aria-label="Search applications" /></label></div>
+              <div class="table-wrap"><table><thead><tr><th>Request ID</th><th>Requester</th><th>Type</th><th>Subject</th><th>Date received</th><th>Status</th><th><span class="sr-only">Action</span></th></tr></thead><tbody id="request-table"></tbody></table></div>
+              <p class="empty-state" id="request-empty" hidden>No requests match your search.</p>
+            </div>
+          </section>
+
+          <footer class="dashboard-footer">LoyalLoop · Platform administration</footer>
+        </div>
+      </main>
+    </div>
+
+    <dialog class="modal" id="user-dialog" aria-labelledby="user-dialog-title"><div class="modal-card detail-card"><div class="modal-heading"><div><p class="eyebrow">ACCOUNT RECORD</p><h2 id="user-dialog-title">User details</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Close">×</button></div><dl class="detail-list" id="user-detail-list"></dl><div class="modal-actions"><button class="secondary-button" type="button" data-close-dialog>Close</button></div><p class="demo-form-note">Identity details not exposed by current profile access policies are omitted.</p></div></dialog>
+
+    <dialog class="modal" id="request-dialog" aria-labelledby="request-dialog-title"><div class="modal-card request-card"><div class="modal-heading"><div><p class="eyebrow">APPLICATION DETAILS</p><h2 id="request-dialog-title">Business application</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Close">×</button></div><div id="request-detail"></div><p class="email-notice">Accepting this request creates the business and grants owner access to the account matching the applicant email. The applicant must register using this email first.</p><p class="modal-feedback" id="request-feedback" role="status" aria-live="polite"></p><div class="modal-actions"><button class="secondary-button" type="button" data-close-dialog>Close</button><button class="secondary-button" id="reject-application" type="button">Reject</button><button class="primary-button" id="approve-application" type="button">Accept &amp; Grant Owner Access</button></div></div></dialog>
+  </body>
+</html>

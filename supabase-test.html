@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoyalLoop - Supabase Connection Test</title>
+</head>
+<body>
+  <h1>LoyalLoop Supabase Test</h1>
+  <p id="status">Checking connection...</p>
+
+  <script type="module">
+    import { supabase } from './supabase.js'
+
+    const status = document.getElementById('status')
+
+    try {
+      const { data, error } = await supabase.auth.getSession()
+
+      if (error) throw error
+
+      status.textContent =
+        'Supabase client initialized successfully. Auth API is accessible.'
+    } catch (error) {
+      status.textContent = 'Connection test failed: ' + error.message
+      console.error(error)
+    }
+  </script>
+</body>
+</html>

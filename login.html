@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F8F6F0" />
+    <title>Sign In | LoyalLoop</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="app.js"></script>
+    <script type="module" src="business-application.js"></script>
+  </head>
+  <body class="auth-page">
+    <main class="auth-main">
+      <section class="auth-card" aria-labelledby="page-title">
+        <a class="compact-brand" href="index.html" aria-label="LoyalLoop home">
+          <svg class="brand-mark compact-mark" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+            <path d="M16 34h48v33H16z" fill="#879780" stroke="#566B55" stroke-width="2" stroke-linejoin="round" />
+            <path d="M12 25h56v11H12z" fill="#566B55" />
+            <path d="M37 25v42" stroke="#EDE6D7" stroke-width="6" />
+            <path d="M40 25c-2-10-16-14-19-7-3 7 6 11 19 7Zm0 0c2-10 16-14 19-7 3 7-6 11-19 7Z" fill="#EDE6D7" stroke="#566B55" stroke-width="2" stroke-linejoin="round" />
+            <path d="m67 12 1.4 3.6L72 17l-3.6 1.4L67 22l-1.4-3.6L62 17l3.6-1.4L67 12Z" fill="#879780" />
+          </svg>
+          <span>LoyalLoop</span>
+        </a>
+        <h1 id="page-title">Welcome Back</h1>
+        <p class="auth-subtitle">Continue your loyalty journey.</p>
+        <form class="auth-form" id="login-form" novalidate>
+          <label for="login-email">Email address</label>
+          <input id="login-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+
+          <label for="login-password">Password</label>
+          <div class="password-field">
+            <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required />
+            <button class="password-toggle" type="button" data-password-toggle="login-password" aria-pressed="false">Show</button>
+          </div>
+
+          <div class="form-utility">
+            <span></span>
+            <a href="#reset-password" id="forgot-password-link">Forgot password?</a>
+          </div>
+          <p class="form-message" id="login-message" role="status" aria-live="polite"></p>
+          <button class="submit-button" type="submit">Sign In</button>
+        </form>
+        <button class="business-application-cta" type="button" id="open-business-application">Wanna add your business to LoyalLoop?</button>
+        <p class="account-prompt">Don't have an account? <a href="register.html">Register</a></p>
+        <a class="home-link" href="index.html">Return to home</a>
+        <p class="demo-access"><strong>Development previews only</strong><br />Dashboards remain previews; role-based access is not connected.<br /><a href="admin/dashboard/">Admin dashboard demo</a><span aria-hidden="true"> · </span><a href="owner/dashboard/">Business owner dashboard demo</a><span aria-hidden="true"> · </span><a href="/staff/dashboard">Staff dashboard demo</a><span aria-hidden="true"> · </span><a href="/customer/dashboard">Customer dashboard demo</a></p>
+      </section>
+    </main>
+    <dialog class="business-application-dialog" id="business-application-dialog" aria-labelledby="business-application-title">
+      <form class="business-application-form" id="business-application-form" novalidate>
+        <div class="business-application-heading">
+          <div><p class="auth-subtitle">BUSINESS ENQUIRY</p><h2 id="business-application-title">Apply to join LoyalLoop</h2></div>
+          <button class="business-application-close" type="button" id="close-business-application" aria-label="Close application form">×</button>
+        </div>
+        <p class="business-application-intro">Tell us a little about your business. Our team will review your application.</p>
+        <label for="application-business-name">Business name</label>
+        <input id="application-business-name" name="business_name" maxlength="120" required />
+        <label for="application-owner-name">Owner's full name</label>
+        <input id="application-owner-name" name="owner_full_name" autocomplete="name" maxlength="120" required />
+        <label for="application-email">Business email</label>
+        <input id="application-email" name="business_email" type="email" autocomplete="email" maxlength="254" required />
+        <label for="application-phone">Contact phone number</label>
+        <input id="application-phone" name="contact_phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="32" required />
+        <label for="application-category">Business category</label>
+        <select id="application-category" name="category" required>
+          <option value="">Choose a category</option><option value="Food & Dining">Food &amp; Dining</option><option value="Retail">Retail</option><option value="Wellness">Wellness</option><option value="Beauty">Beauty</option><option value="Services">Services</option><option value="Other">Other</option>
+        </select>
+        <label for="application-description">Short description <span>(optional)</span></label>
+        <textarea id="application-description" name="description" rows="3" maxlength="500" placeholder="What would you like us to know about your business?"></textarea>
+        <p class="form-message" id="business-application-message" role="status" aria-live="polite"></p>
+        <button class="submit-button" type="submit">Submit application</button>
+      </form>
+    </dialog>
+
+    <dialog class="auth-dialog" id="reset-password-dialog" aria-labelledby="reset-password-title">
+      <form id="reset-password-form" class="auth-form" novalidate>
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:8px;">
+          <div><p class="auth-subtitle">PASSWORD RESET</p><h2 id="reset-password-title">Reset your password</h2></div>
+          <button class="business-application-close" type="button" id="close-reset-password" aria-label="Close">×</button>
+        </div>
+        <p class="auth-subtitle">Enter your email address and we’ll send a password reset link.</p>
+        <label for="reset-email">Email address</label>
+        <input id="reset-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+        <p class="form-message" id="reset-message" role="status" aria-live="polite"></p>
+        <div class="form-utility" style="margin-top:8px;"><button class="business-application-close" type="button" id="close-reset-password-cancel" style="padding:0 6px;background:#fffefa;border:1px solid #d9d8cd;border-radius:8px;color:var(--text);cursor:pointer;font:inherit;font-size:0.86rem;">Cancel</button></div>
+        <button class="submit-button" type="submit">Send reset link</button>
+      </form>
+    </dialog>
+  </body>
+</html>

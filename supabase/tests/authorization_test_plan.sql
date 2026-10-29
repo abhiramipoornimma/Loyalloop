@@ -1,0 +1,108 @@
+-- LoyalLoop authorization validation plan (not an executable test suite).
+-- Run only against a separate disposable/staging Supabase project after human
+-- review. Never run fixture writes or workflows against production.
+--
+-- SQL Editor checks can inspect catalogs, constraints, grants, RLS flags,
+-- functions, triggers, and Storage configuration. SQL Editor runs with a
+-- privileged database role and does not prove API/JWT authorization. Calls
+-- made after SET ROLE or manually setting request.jwt.claim.sub are useful
+-- diagnostics only; they are not a substitute for requests authenticated as
+-- separate users through Supabase Auth/PostgREST/Storage APIs.
+--
+-- API/JWT checks require distinct Auth users and separate access tokens:
+--   admin; owner A; owner B; staff A (one user per permission combination);
+--   inactive staff A; customer A; customer B; ordinary user; anonymous.
+-- Prepare businesses A/B (approved + active) and C (paused), active programs
+-- and rules for A/B, customers enrolled separately in A/B, and an un-enrolled
+-- customer. Use only a disposable project and record the migration revision.
+
+-- A. SQL Editor catalog/configuration checks (read-only after migrations)
+--  1. Confirm all 15 public tables exist, RLS is enabled, and FORCE RLS state
+--     is recorded. Security-definer RPCs rely on explicit authorization checks
+--     and row_security=off; inspect their owners and execute ACLs.
+--  2. Inspect pg_policies for every table and storage.objects. Confirm no
+--     unexpected permissive policies or grants predate this migration.
+--  3. Inspect column/table ACLs: no direct INSERT/UPDATE/DELETE on profiles'
+--     identity, platform_admins, customer_profiles, ledger/redemption tables,
+--     or audit_logs; only the documented owner/staff writes are exposed.
+--  4. Confirm functions use fixed search_path=pg_catalog, only intended roles
+--     have EXECUTE, and helper functions in loyalloop_private are not directly
+--     executable by PUBLIC. Confirm auth.users trigger exists exactly once.
+--  5. Confirm constraints/indexes, business-logos bucket privacy/size/MIME
+--     configuration, and its four intended Storage policies.
+--  6. In a disposable project, test rollback atomicity by deliberately causing
+--     a workflow failure and confirming no partial rows remain.
+--
+-- B. API/JWT tests: anonymous and ordinary authenticated user
+--  1. Anonymous: read only active/approved business public fields, active
+--     public offers/program/rule, and logos for active/approved businesses.
+--     Cannot read business_details, profiles, memberships, subscriptions,
+--     stamp transactions, redemptions, or audit logs; all writes are denied.
+--  2. Ordinary user: read/update only own profiles.full_name and phone. Cannot
+--     update customer_profiles (phone_verified_at is trusted/provider data),
+--     insert platform_admins, create memberships/roles, or alter other users.
+--     Cannot execute admin RPCs or cross-business private reads.
+--
+-- C. Separate platform administrator identity
+--  1. Provision its platform_admins row through a trusted out-of-band admin
+--     process; client self-provisioning must fail. Confirm admin-only reads.
+--  2. admin_create_business creates pending business/details/branding/program.
+--     admin_approve_business approves and provisions owner atomically. Verify
+--     missing business details, invalid IDs, and closed businesses fail.
+--  3. admin_set_business_status cannot activate unapproved businesses. Verify
+--     every operation produces an audit event and non-admin callers fail.
+--
+-- D. Two separate businesses: owner A, owner B, and staff A
+--  1. Owner A can read/update only A business details/branding/program/offers;
+--     owner A cannot read or mutate B by substituting B's IDs. Repeat for B.
+--  2. Owner A can create staff A with limited permissions, update/deactivate
+--     staff A, but cannot change staff into owner or move staff across business.
+--     Staff cannot change own role, status, or permissions or manage another
+--     staff member. Ordinary users cannot create any business membership.
+--  3. Staff permission matrix: enrollment permission only enrolls; award only
+--     awards; redeem only redeems. No permission grants none. Inactive staff
+--     and staff for paused businesses cannot call loyalty workflows.
+--  4. Confirm subscriptions and audit history are visible only to business
+--     owners and platform admins, with no cross-business access.
+--
+-- E. Customer A and Customer B isolation / enrollment
+--  1. Customer A sees their own profile and memberships/ledger/redemptions in
+--     businesses where enrolled, not Customer B's records. Customer B likewise.
+--     Customers cannot read private business contacts or another tenant's data.
+--  2. Self-enrollment is allowed only for active/approved business with active
+--     program. Staff enrollment requires that business's enrollment permission
+--     and an existing customer Auth profile. Cross-business staff enrollment
+--     and fabricated customer IDs fail.
+--  3. Concurrent repeated enrollment creates at most one row per
+--     business/customer; reused idempotency key for another customer fails.
+--     Document whether re-enrollment after inactive status is intentionally
+--     unsupported or requires a future audited workflow.
+--
+-- F. Ledger, redemption, idempotency, concurrency, and audit
+--  1. Authenticated clients cannot directly insert/update/delete stamps,
+--     redemptions, customer memberships, or audit rows. Each authorized award
+--     call grants exactly one stamp and requires a fresh idempotency key.
+--     Distinct keys can still represent duplicate visits; require a unique
+--     purchase/visit reference in a future change if that threat matters.
+--  2. Wrong-tenant, inactive, unapproved, paused, or unauthorized requests
+--     fail without writes. Same request/key returns its original result;
+--     changed parameters or another actor using that key fail.
+--  3. Concurrent redemption attempts against one balance serialize; no
+--     negative balance or duplicate redemption. Ledger and redemption/audit
+--     inserts roll back together on any error.
+--  4. Audit history is immutable to clients. Confirm sensitive changes record
+--     actor, business, action, target, and changed field names, without copying
+--     secret/contact values into audit metadata.
+--
+-- G. Storage API tests (separate owner A/B tokens and anonymous)
+--  1. Anonymous reads only logos under active/approved business UUID folders.
+--     Private bucket URLs are not public object reads.
+--  2. Owner A can upload/replace/delete only under A's UUID folder; staff A,
+--     owner B, customer A/B, and anonymous are denied writes. Attempt moving an
+--     object from A to B and path traversal/malformed UUID paths; all fail.
+--  3. Verify MIME/size limits at Storage API and do not place private files in
+--     this bucket.
+--
+-- Record identity, token role, business, request, expected result, observed
+-- result, and database revision for every API case. Do not describe controls as
+-- verified until the full API/JWT matrix and concurrent workflow cases pass.

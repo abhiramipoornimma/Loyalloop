@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F8F6F0" />
+    <title>Staff Dashboard | LoyalLoop</title>
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="/staff/dashboard/staff.css" />
+    <script type="module" src="/staff/dashboard/staff.js"></script>
+  </head>
+  <body class="staff-page">
+    <div class="staff-shell" hidden>
+      <aside class="staff-sidebar">
+        <a class="staff-brand" href="../../index.html" aria-label="LoyalLoop home">
+          <svg class="staff-logo" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+            <path d="M16 34h48v33H16z" fill="#879780" stroke="#566B55" stroke-width="2" stroke-linejoin="round" />
+            <path d="M12 25h56v11H12z" fill="#566B55" />
+            <path d="M37 25v42" stroke="#EDE6D7" stroke-width="6" />
+            <path d="M40 25c-2-10-16-14-19-7-3 7 6 11 19 7Zm0 0c2-10 16-14 19-7 3 7-6 11-19 7Z" fill="#EDE6D7" stroke="#566B55" stroke-width="2" stroke-linejoin="round" />
+            <path d="m67 12 1.4 3.6L72 17l-3.6 1.4L67 22l-1.4-3.6L62 17l3.6-1.4L67 12Z" fill="#879780" />
+          </svg>
+          <span>LoyalLoop</span>
+        </a>
+        <div class="staff-business" aria-label="Assigned business">
+          <span class="staff-business-mark" aria-hidden="true">L</span>
+          <span><small>ASSIGNED BUSINESS</small><strong id="assigned-business-name">Loading business…</strong></span>
+          <span class="business-status" id="assigned-business-status" aria-label="Business status"></span>
+        </div>
+        <nav class="staff-nav" aria-label="Staff dashboard">
+          <a class="active" href="#overview" aria-current="page"><span aria-hidden="true">⌂</span>Overview</a>
+          <a href="#customers"><span aria-hidden="true">⌕</span>Search Customers</a>
+          <a href="#add-stamps"><span aria-hidden="true">＋</span>Add Stamps</a>
+          <a href="#redeem"><span aria-hidden="true">✳</span>Redeem Rewards</a>
+          <a href="#activity"><span aria-hidden="true">◷</span>Recent Activity</a>
+        </nav>
+        <div class="staff-sidebar-bottom">
+          <div class="staff-profile"><span class="staff-avatar">S</span><span><strong>Staff member</strong><small>Staff workspace</small></span></div>
+          <a class="staff-logout" href="../../login.html" data-staff-signout><span aria-hidden="true">↩</span>Sign out</a>
+        </div>
+      </aside>
+
+      <main class="staff-main">
+        <header class="staff-topbar">
+          <div><span class="staff-topbar-label">YOUR WORKSPACE</span><strong id="topbar-business-name">Business</strong></div>
+          <div class="staff-topbar-right"><span class="staff-date" id="today-date"></span><a href="../../login.html" data-staff-signout>Sign out</a></div>
+        </header>
+        <div class="staff-content">
+          <div class="staff-demo-banner" role="status" aria-live="polite"><span class="demo-pulse" aria-hidden="true"></span><div><strong>Business workspace</strong><span>Verifying your session and staff membership…</span></div></div>
+
+          <section class="staff-section" id="overview">
+            <div class="staff-heading"><div><p class="staff-eyebrow">STAFF WORKSPACE</p><h1>Staff workspace</h1><p>Your business activity for today.</p></div><div class="staff-heading-actions"><span class="assigned-pill"><i></i> Assigned business</span><button class="staff-button staff-button-primary" type="button" data-open-enrollment>＋ Enrol customer</button></div></div>
+            <p class="staff-data-label">TODAY</p>
+            <div class="staff-stats" id="staff-stats" aria-live="polite"></div>
+            <div class="staff-overview-grid">
+              <article class="staff-panel reward-rules-panel"><div class="staff-panel-heading"><div><p class="staff-eyebrow">OWNER-ASSIGNED REWARD RULES</p><h2 id="overview-reward-name">Loading reward rule…</h2></div><span class="quick-icon" aria-hidden="true">✳</span></div><p id="overview-reward-description"></p><div id="overview-reward-details" class="reward-rules-details"></div></article>
+            </div>
+          </section>
+
+          <section class="staff-section" id="customers" hidden>
+            <div class="staff-section-heading"><div><p class="staff-eyebrow">MEMBER LOOKUP</p><h1>Search Customers</h1><p>Find a member and open the loyalty card for your assigned business.</p></div><button class="staff-button staff-button-primary" type="button" data-open-enrollment>＋ Add customer</button></div>
+            <div class="staff-panel search-panel">
+              <form id="customer-search-form" class="customer-search-form">
+                <label for="customer-query">Search by customer name, email, phone, or account ID</label>
+                <div class="customer-search-controls"><div class="search-input-wrap"><span aria-hidden="true">⌕</span><input id="customer-query" type="search" autocomplete="off" placeholder="Name, email, phone, or ID" /><button class="clear-search" type="button" id="clear-search" aria-label="Clear search" hidden>×</button></div><button class="staff-button staff-button-primary" type="submit">Search</button></div>
+                <p class="search-hint">Results are limited to customers enrolled in your assigned business.</p>
+                <p class="search-hint" id="customer-search-error" role="status" aria-live="polite"></p>
+              </form>
+              <div class="customer-results-heading"><h2>Members</h2><span id="customer-result-count" aria-live="polite"></span></div>
+              <div class="staff-table-wrap"><table class="staff-table"><thead><tr><th>Customer</th><th>Stamps</th><th>Available rewards</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody id="customer-results"></tbody></table></div>
+              <div class="staff-empty" id="customer-empty" hidden><span aria-hidden="true">⌕</span><strong>No customer found</strong><p>Try a different name or phone number.</p></div>
+              <div class="staff-empty" id="customer-search-prompt"><span aria-hidden="true">✳</span><strong>Ready when you are</strong><p>Search using a customer account or membership ID.</p></div>
+              <article class="staff-panel customer-loyalty-card" id="customer-loyalty-card" hidden></article>
+            </div>
+          </section>
+
+          <section class="staff-section" id="add-stamps" hidden>
+            <div class="staff-section-heading"><div><p class="staff-eyebrow">RECORD A VISIT</p><h1>Add Stamps</h1><p>Choose a member to review their card and record one visit.</p></div></div>
+            <div class="staff-action-layout"><div class="staff-panel action-search-panel"><label for="stamp-customer-query">Find a customer</label><div class="search-input-wrap"><span aria-hidden="true">⌕</span><input id="stamp-customer-query" type="search" placeholder="Search members" autocomplete="off" /></div><div id="stamp-customer-list" class="action-customer-list"></div></div><div class="staff-panel action-placeholder" id="stamp-card-placeholder"><span class="placeholder-icon" aria-hidden="true">✳</span><h2>Select a member</h2><p>Their card and visit progress will appear here.</p></div><div class="staff-panel action-card" id="stamp-card" hidden></div></div>
+          </section>
+
+          <section class="staff-section" id="redeem" hidden>
+            <div class="staff-section-heading"><div><p class="staff-eyebrow">MEMBER REWARDS</p><h1>Redeem Rewards</h1><p>Review eligibility and redeem a reward for a member.</p></div></div>
+            <div class="staff-action-layout"><div class="staff-panel action-search-panel"><label for="redeem-customer-query">Find a customer</label><div class="search-input-wrap"><span aria-hidden="true">⌕</span><input id="redeem-customer-query" type="search" placeholder="Search members" autocomplete="off" /></div><div id="redeem-customer-list" class="action-customer-list"></div></div><div class="staff-panel action-placeholder" id="redeem-card-placeholder"><span class="placeholder-icon" aria-hidden="true">◇</span><h2>Select a member</h2><p>Available rewards and eligibility will appear here.</p></div><div class="staff-panel action-card" id="redeem-card" hidden></div></div>
+          </section>
+
+          <section class="staff-section" id="activity" hidden>
+            <div class="staff-section-heading"><div><p class="staff-eyebrow">YOUR BUSINESS</p><h1>Recent Activity</h1><p>Member actions recorded for your assigned business.</p></div></div>
+            <div class="staff-panel activity-panel"><div class="activity-toolbar"><div><h2>Activity history</h2><p id="activity-count"></p></div><div class="activity-filters"><label>Date<span class="sr-only">Filter by date</span><select id="activity-date"><option value="all">All dates</option><option value="today">Today</option><option value="week">Last 7 days</option></select></label><label>Action<span class="sr-only">Filter by action</span><select id="activity-type"><option value="all">All actions</option><option value="stamp">Stamps added</option><option value="redemption">Rewards redeemed</option></select></label></div></div><div class="staff-table-wrap"><table class="staff-table activity-table"><thead><tr><th>Date &amp; time</th><th>Action</th><th>Customer</th><th>Details</th><th>Status</th></tr></thead><tbody id="activity-results"></tbody></table></div><div class="staff-empty" id="activity-empty" hidden><strong>No activity matches</strong><p>Try changing the date or action filters.</p></div><p class="activity-note">History is read from the business loyalty ledger.</p></div>
+          </section>
+          <footer class="staff-footer">LoyalLoop · Staff development preview · Data resets when this page is reloaded</footer>
+        </div>
+      </main>
+    </div>
+
+    <dialog class="staff-dialog enrollment-dialog" id="enrollment-dialog" aria-labelledby="enrollment-title"><form class="staff-dialog-card" id="enrollment-form" novalidate><div class="dialog-heading"><div><p class="staff-eyebrow">CUSTOMER MEMBERSHIP</p><h2 id="enrollment-title">Enrol a customer</h2></div><button class="dialog-x" type="button" data-close-enrollment aria-label="Close">×</button></div><p class="enrollment-intro">Enter the email address on the customer's LoyalLoop account. Customers without an account must register before enrollment.</p><label for="enrollment-email">Customer email address</label><input id="enrollment-email" name="email" type="email" autocomplete="email" required placeholder="name@example.com" /><p class="enrollment-feedback" id="enrollment-feedback" role="status" aria-live="polite"></p><p class="dialog-demo-note">The customer will be enrolled in this business's active loyalty programme.</p><div class="dialog-actions"><button class="staff-button staff-button-secondary" type="button" data-close-enrollment>Cancel</button><button class="staff-button staff-button-primary" type="submit">Enroll customer</button></div></form></dialog>
+    <dialog class="staff-dialog" id="stamp-dialog" aria-labelledby="stamp-dialog-title"><form method="dialog" class="staff-dialog-card"><div class="dialog-heading"><div><p class="staff-eyebrow">CONFIRM VISIT</p><h2 id="stamp-dialog-title">Add one stamp?</h2></div><button class="dialog-x" value="cancel" aria-label="Close">×</button></div><div id="stamp-confirm-summary" class="confirm-summary"></div><label for="purchase-reference">Purchase reference or note <span>Optional</span></label><input id="purchase-reference" maxlength="80" placeholder="e.g. Receipt 1042" /><p class="dialog-demo-note">The server validates staff permissions, membership, and idempotency before recording.</p><div class="dialog-actions"><button class="staff-button staff-button-secondary" value="cancel">Cancel</button><button class="staff-button staff-button-primary" id="confirm-stamp" value="confirm">Confirm visit</button></div></form></dialog>
+    <dialog class="staff-dialog" id="redeem-dialog" aria-labelledby="redeem-dialog-title"><form method="dialog" class="staff-dialog-card"><div class="dialog-heading"><div><p class="staff-eyebrow">CONFIRM REDEMPTION</p><h2 id="redeem-dialog-title">Redeem this reward?</h2></div><button class="dialog-x" value="cancel" aria-label="Close">×</button></div><div id="redeem-confirm-summary" class="confirm-summary"></div><p class="dialog-demo-note">The server verifies current balance, active reward rules, staff permissions, and idempotency.</p><div class="dialog-actions"><button class="staff-button staff-button-secondary" value="cancel">Cancel</button><button class="staff-button staff-button-primary" id="confirm-redemption" value="confirm">Confirm redemption</button></div></form></dialog>
+    <div class="staff-toast" id="staff-toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

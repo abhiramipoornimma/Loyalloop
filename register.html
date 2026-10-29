@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F8F6F0" />
+    <title>Create Account | LoyalLoop</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body class="auth-page">
+    <main class="auth-main">
+      <section class="auth-card register-card" aria-labelledby="page-title">
+        <a class="compact-brand" href="index.html" aria-label="LoyalLoop home">
+          <svg class="brand-mark compact-mark" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+            <path d="M16 34h48v33H16z" fill="#879780" stroke="#566B55" stroke-width="2" stroke-linejoin="round" />
+            <path d="M12 25h56v11H12z" fill="#566B55" />
+            <path d="M37 25v42" stroke="#EDE6D7" stroke-width="6" />
+            <path d="M40 25c-2-10-16-14-19-7-3 7 6 11 19 7Zm0 0c2-10 16-14 19-7 3 7-6 11-19 7Z" fill="#EDE6D7" stroke="#566B55" stroke-width="2" stroke-linejoin="round" />
+            <path d="m67 12 1.4 3.6L72 17l-3.6 1.4L67 22l-1.4-3.6L62 17l3.6-1.4L67 12Z" fill="#879780" />
+          </svg>
+          <span>LoyalLoop</span>
+        </a>
+        <h1 id="page-title">Create Account</h1>
+        <p class="auth-subtitle">Start your loyalty journey.</p>
+        <form class="auth-form" id="register-form" novalidate>
+          <label for="full-name">Full name</label>
+          <input id="full-name" name="name" type="text" autocomplete="name" placeholder="Your full name" required />
+
+          <label for="phone">Phone number</label>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Your phone number" required />
+
+          <label for="register-email">Email address</label>
+          <input id="register-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+
+          <label for="register-password">Create password</label>
+          <div class="password-field">
+            <input id="register-password" name="password" type="password" autocomplete="new-password" placeholder="At least 8 characters" required />
+            <button class="password-toggle" type="button" data-password-toggle="register-password" aria-pressed="false">Show</button>
+          </div>
+
+          <p class="form-message" id="register-message" role="status" aria-live="polite"></p>
+          <button class="submit-button" type="submit">Create Account</button>
+        </form>
+        <p class="account-prompt">Already have an account? <a href="login.html">Sign In</a></p>
+        <a class="home-link" href="index.html">Return to home</a>
+      </section>
+    </main>
+  </body>
+</html>

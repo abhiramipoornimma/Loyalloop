@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F8F6F0" />
+    <title>My Loyalty Spaces | LoyalLoop</title>
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="/customer/customer.css" />
+    <script type="module" src="/customer/dashboard/dashboard.js"></script>
+  </head>
+  <body class="customer-page">
+    <header class="customer-topbar">
+      <a class="customer-wordmark" href="../../index.html" aria-label="LoyalLoop home">
+        <svg class="customer-logo" viewBox="0 0 80 80" fill="none" aria-hidden="true"><path d="M16 34h48v33H16z" fill="#879780" stroke="#566B55" stroke-width="2" stroke-linejoin="round"/><path d="M12 25h56v11H12z" fill="#566B55"/><path d="M37 25v42" stroke="#EDE6D7" stroke-width="6"/><path d="M40 25c-2-10-16-14-19-7-3 7 6 11 19 7Zm0 0c2-10 16-14 19-7 3 7-6 11-19 7Z" fill="#EDE6D7" stroke="#566B55" stroke-width="2" stroke-linejoin="round"/><path d="m67 12 1.4 3.6L72 17l-3.6 1.4L67 22l-1.4-3.6L62 17l3.6-1.4L67 12Z" fill="#879780"/></svg>
+        <span>LoyalLoop</span>
+      </a>
+      <nav class="customer-nav" aria-label="Customer navigation"><a class="active" href="#businesses" aria-current="page">My Businesses</a><a href="#account">Account</a></nav>
+      <div class="customer-user"><span class="customer-user-name" id="account-header-name">Member</span><a href="../../login.html" data-demo-logout>Sign out</a></div>
+    </header>
+    <main class="customer-main">
+      <div class="customer-demo-banner" id="customer-demo-banner" role="status" aria-live="polite"><span aria-hidden="true">i</span><p><strong>Your loyalty dashboard</strong> · Loading your account and business memberships…</p></div>
+      <section class="customer-welcome" aria-labelledby="customer-title"><p class="customer-eyebrow">YOUR LOYALTY JOURNEY</p><h1 id="customer-title">Good to see you, <span id="customer-greeting">Member</span>.</h1><p>Your favourite places, all in one lovely little space.</p></section>
+      <section id="businesses" class="customer-businesses-section" aria-labelledby="businesses-title"><div class="customer-section-heading"><div><p class="customer-eyebrow">YOUR MEMBERSHIPS</p><h2 id="businesses-title">My Loyalty Spaces</h2><p>Each card has its own stamps, rewards, and business details.</p></div></div><div class="membership-grid" id="membership-grid"></div><div class="membership-empty" id="membership-empty" hidden><span aria-hidden="true">✳</span><h3>No loyalty spaces yet</h3><p>You don’t have any business memberships yet.</p></div></section>
+
+      <section id="enrol" class="customer-businesses-section" aria-labelledby="enrol-title"><div class="customer-section-heading"><div><p class="customer-eyebrow">JOIN A BUSINESS</p><h2 id="enrol-title">Join a Loyalty Programme</h2><p>Enter a business slug to start collecting stamps at that business.</p></div></div><div class="enrol-panel"><form id="enrol-form" class="customer-search-form" novalidate><label for="enrol-slug">Business slug</label><div class="customer-search-controls"><div class="search-input-wrap"><span aria-hidden="true">⌕</span><input id="enrol-slug" name="slug" type="text" autocomplete="off" placeholder="e.g. willow-and-pine" required /><button class="staff-button staff-button-primary" type="submit">Join</button></div></div><p class="owner-feedback" id="enrol-message" role="status" aria-live="polite"></p></form></div></section>
+      <section id="account" class="customer-account-section" aria-labelledby="account-title"><div class="customer-section-heading"><div><p class="customer-eyebrow">YOUR DETAILS</p><h2 id="account-title">Account</h2></div></div><div class="account-card"><span class="account-avatar" id="account-avatar">M</span><div><strong id="account-name">Member</strong><p id="account-description">Signed-in LoyalLoop account</p></div><span class="account-status">Signed in</span></div></section>
+      <footer class="customer-footer">LoyalLoop</footer>
+    </main>
+  </body>
+</html>

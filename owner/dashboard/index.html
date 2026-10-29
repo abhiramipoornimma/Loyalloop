@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F8F6F0" />
+    <title>Owner Dashboard | LoyalLoop</title>
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="owner.css" />
+    <script type="module" src="owner.js"></script>
+  </head>
+  <body class="owner-page">
+    <div class="owner-shell" hidden>
+      <aside class="owner-sidebar">
+        <a class="owner-brand" href="../../index.html" aria-label="LoyalLoop home">
+          <svg class="owner-logo" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+            <path d="M16 34h48v33H16z" fill="#879780" stroke="#566B55" stroke-width="2" stroke-linejoin="round" />
+            <path d="M12 25h56v11H12z" fill="#566B55" />
+            <path d="M37 25v42" stroke="#EDE6D7" stroke-width="6" />
+            <path d="M40 25c-2-10-16-14-19-7-3 7 6 11 19 7Zm0 0c2-10 16-14 19-7 3 7-6 11-19 7Z" fill="#EDE6D7" stroke="#566B55" stroke-width="2" stroke-linejoin="round" />
+            <path d="m67 12 1.4 3.6L72 17l-3.6 1.4L67 22l-1.4-3.6L62 17l3.6-1.4L67 12Z" fill="#879780" />
+          </svg>
+          <span>LoyalLoop</span>
+        </a>
+        <div class="business-switcher"><span class="switcher-mark">L</span><span><small>YOUR BUSINESS</small><strong id="sidebar-business-name">Loading business…</strong></span><span class="switcher-chevron">⌄</span></div>
+        <nav class="owner-nav" aria-label="Business dashboard">
+          <a class="active" href="#overview"><span class="nav-icon">⌂</span>Overview</a>
+          <a href="#branding"><span class="nav-icon">✳</span>Business Branding</a>
+          <a href="#reward-rules"><span class="nav-icon">☆</span>Reward Rules</a>
+          <a href="#staff"><span class="nav-icon">♧</span>Staff Management</a>
+          <a href="#redemptions"><span class="nav-icon">◷</span>Reward Redemptions</a>
+          <a href="#customers"><span class="nav-icon">♙</span>Customer Activity</a>
+          <a href="#settings"><span class="nav-icon">⚙</span>Settings</a>
+        </nav>
+        <div class="owner-sidebar-bottom">
+          <div class="owner-profile"><span class="owner-avatar">O</span><span><strong id="sidebar-owner-name">Owner</strong><small>Business owner</small></span></div>
+          <a href="../../login.html" class="owner-logout" data-owner-signout>↩ <span>Sign out</span></a>
+        </div>
+      </aside>
+
+      <main class="owner-main">
+        <header class="owner-topbar"><div class="owner-crumb"><span id="topbar-business-name">Business</span> <span>/</span> Owner Dashboard</div><div class="topbar-actions"><a class="public-link" id="top-public-preview" href="../../b/">View public page ↗</a><a class="mobile-logout" href="../../login.html" data-owner-signout>Sign out</a></div></header>
+        <div class="owner-content">
+          <div class="owner-demo-banner" id="owner-data-note" role="status" aria-live="polite"><span class="demo-indicator"></span><div><strong>Business workspace</strong><span>Verifying your account and loading authorized business records…</span></div></div>
+
+          <section class="owner-section owner-overview" id="overview">
+            <div class="owner-heading"><div><p class="owner-eyebrow">BUSINESS OVERVIEW</p><h1>Welcome back, <span id="welcome-owner-name">Owner</span></h1><p class="owner-subtitle">Here’s what’s happening at <strong id="heading-business-name">your business</strong>.</p></div><span class="live-status"><i></i> Business status</span></div>
+            <div class="owner-stats" id="owner-stats"></div>
+            <div class="overview-grid">
+              <article class="owner-panel overview-programme"><div class="panel-title-row"><div><p class="owner-eyebrow">YOUR LOYALTY PROGRAMME</p><h2 id="overview-reward-name">A Little Something</h2></div><span class="programme-symbol">✳</span></div><p class="overview-reward-description" id="overview-reward-description"></p><div class="overview-stamp-row" id="overview-stamps"></div><p class="overview-rule-caption" id="overview-stamp-caption"></p><a class="inline-link" href="#reward-rules">Manage reward rules <span aria-hidden="true">→</span></a></article>
+              <article class="owner-panel recent-activity"><div class="panel-title-row"><div><p class="owner-eyebrow">RECENT ACTIVITY</p><h2>Latest visits</h2></div><a class="inline-link" href="#customers">View members</a></div><div id="recent-activity-list"></div></article>
+            </div>
+          </section>
+
+          <section class="owner-section" id="branding">
+            <div class="owner-section-heading"><div><p class="owner-eyebrow">MAKE IT YOURS</p><h2>Business Branding</h2><p class="owner-subtitle">Shape the look and feel of your public loyalty page.</p></div><span class="unsaved-indicator" id="branding-unsaved" hidden>Unsaved changes</span></div>
+            <div class="branding-layout">
+              <form class="owner-panel owner-form" id="branding-form" novalidate>
+                <div class="form-section-heading"><h3>Brand identity</h3><p>These settings affect your public business page preview.</p></div>
+                <label class="owner-field">Business display name<input name="displayName" maxlength="60" required /></label>
+                <label class="owner-field">Business logo <input name="logo" id="logo-upload" type="file" accept="image/png,image/jpeg,image/webp" /><small>PNG, JPG, or WebP · up to 2 MB. Stored in private business storage.</small></label>
+                <div class="color-fields">
+                  <label class="color-field">Page background<input name="background" type="color" /></label>
+                  <label class="color-field">Primary colour<input name="primary" type="color" /></label>
+                  <label class="color-field">Secondary accent<input name="secondary" type="color" /></label>
+                  <label class="color-field">Text colour<input name="text" type="color" /></label>
+                </div>
+                <label class="owner-field">Theme preset<select name="theme"><option>Sage & Cream</option><option>Minimal Light</option><option>Elegant Dark</option><option>Warm Earth</option><option>Custom</option></select></label>
+                <label class="owner-field">Welcome message <span class="optional-label">Optional</span><input name="welcome" maxlength="100" placeholder="A warm welcome for your members" /></label>
+                <label class="owner-field">Short description <span class="optional-label">Optional</span><textarea name="description" rows="3" maxlength="180" placeholder="Tell members a little about your business"></textarea></label>
+                <p class="owner-feedback" id="branding-feedback" role="status" aria-live="polite"></p>
+                <div class="owner-form-actions"><button class="owner-button secondary" type="button" id="branding-reset">Reset</button><button class="owner-button primary" type="submit">Save Changes</button></div>
+                <p class="demo-save-note">Branding fields are saved to the current business record.</p>
+              </form>
+              <aside class="preview-column"><div class="preview-heading"><div><p class="owner-eyebrow">LIVE PREVIEW</p><h3>Public loyalty page</h3></div><span class="preview-badge">PREVIEW</span></div>
+                <div class="public-preview" id="branding-preview">
+                  <div class="preview-brand-logo" id="preview-logo-fallback">W</div><img class="preview-uploaded-logo" id="preview-uploaded-logo" alt="Business logo preview" hidden />
+                  <h3 id="preview-business-name">Your business</h3><p class="preview-welcome" id="preview-welcome"></p><p class="preview-description" id="preview-description"></p>
+                  <div class="preview-loyalty-card"><div class="preview-card-top"><span id="preview-card-business">Your business</span><span>LOYALTY</span></div><div class="preview-stamps" id="preview-stamps"></div><div class="preview-reward"><small>YOUR REWARD</small><strong id="preview-reward-name">Reward not configured</strong><span id="preview-reward-summary"></span></div></div>
+                  <p class="preview-footer">Your next visit brings you closer.</p>
+                </div>
+                <a class="owner-button preview-open" id="open-public-preview" href="../../b/?slug=willow-and-pine">Open public preview ↗</a>
+                <p class="preview-hint">Only public branding and reward details appear in this preview.</p>
+              </aside>
+            </div>
+          </section>
+
+          <section class="owner-section" id="reward-rules">
+            <div class="owner-section-heading"><div><p class="owner-eyebrow">LOYALTY PROGRAMME</p><h2>Reward Rules</h2><p class="owner-subtitle">Set the reward members can work towards.</p></div><span class="unsaved-indicator" id="rules-unsaved" hidden>Unsaved changes</span></div>
+            <div class="rules-layout">
+              <form class="owner-panel owner-form" id="rules-form" novalidate>
+                <div class="form-section-heading"><h3>Programme settings</h3><p>Rule changes apply to future activity only. Previously issued rewards and redemptions are preserved.</p></div>
+                <div class="field-row"><label class="owner-field">Stamps required<input name="stamps" type="number" min="1" max="100" step="1" required /></label><label class="owner-field">Reward type<select name="type"><option value="free-item">Free item</option><option value="discount">Discount</option><option value="custom">Custom reward</option></select></label></div>
+                <label class="owner-field">Reward name<input name="rewardName" maxlength="60" required /></label>
+                <label class="owner-field">Reward description<textarea name="rewardDescription" rows="3" maxlength="180" required></textarea></label>
+                <div class="field-row"><label class="owner-field" id="discount-field" hidden>Discount percentage<input name="discount" type="number" min="1" max="100" step="1" placeholder="e.g. 15" /></label><label class="owner-field">Minimum qualifying purchase <span class="optional-label">Optional</span><span class="money-input"><span>$</span><input name="minimum" type="number" min="0" step="0.01" placeholder="0.00" /></span><small>This amount is shown as a reward condition; checkout verification is not part of the current redemption workflow.</small></label></div>
+                <label class="owner-field compact-field">Reward offer expires <span class="optional-label">Optional, days after publish</span><input name="validity" type="number" min="1" max="3650" step="1" placeholder="No expiry" /><small>The offer expires after this many days. Blank means no expiry.</small></label>
+                <label class="check-field"><input name="active" type="checkbox" /><span><strong>Programme is active</strong><small>Members can earn stamps while the programme is active.</small></span></label>
+                <p class="owner-feedback" id="rules-feedback" role="status" aria-live="polite"></p>
+                <div class="owner-form-actions"><button class="owner-button secondary" type="button" id="rules-cancel">Cancel</button><button class="owner-button primary" type="submit">Save Changes</button></div>
+              </form>
+              <aside class="owner-panel rules-preview"><p class="owner-eyebrow">CARD PREVIEW</p><h3 id="rules-preview-business">Your business</h3><p class="rules-preview-reward" id="rules-preview-reward"></p><div class="rules-stamp-grid" id="rules-stamp-grid"></div><p class="rules-preview-caption" id="rules-preview-caption"></p><div class="history-note"><span>↻</span><p>Existing customer stamps and issued rewards remain unchanged when you update these rules.</p></div></aside>
+            </div>
+          </section>
+
+          <section class="owner-section" id="staff">
+            <div class="owner-section-heading"><div><p class="owner-eyebrow">TEAM ACCESS</p><h2>Staff Management</h2><p class="owner-subtitle">Manage staff access for <strong class="business-name-inline">your business</strong>.</p></div><button class="owner-button primary" type="button" id="add-staff">＋ Add Staff</button></div>
+            <div class="owner-panel data-panel"><div class="data-toolbar"><div><h3>Staff members</h3><p id="staff-count"></p></div><label class="owner-search"><span aria-hidden="true">⌕</span><input type="search" id="staff-search" placeholder="Search staff" aria-label="Search staff members" /></label></div><div class="owner-table-wrap"><table><thead><tr><th>Staff member</th><th>Email</th><th>Phone</th><th>Business</th><th>Status</th><th>Date added</th><th>Actions</th></tr></thead><tbody id="staff-table"></tbody></table></div><p class="empty-row" id="staff-empty" hidden>No staff members match your search.</p></div>
+            <p class="owner-feedback" id="staff-operation-feedback" role="status" aria-live="polite"></p>
+            <p class="backend-note">Staff invitations use a server-side Supabase Auth workflow. Existing accounts receive business access without a new invitation email.</p>
+          </section>
+
+          <section class="owner-section" id="redemptions">
+            <div class="owner-section-heading"><div><p class="owner-eyebrow">REWARD HISTORY</p><h2>Reward Redemptions</h2><p class="owner-subtitle">Read-only records for your business. Historical activity cannot be edited here.</p></div></div>
+            <div class="redemption-stats" id="redemption-stats"></div>
+            <div class="owner-panel data-panel"><div class="data-toolbar filters-toolbar"><div><h3>Redemption history</h3><p id="redemption-count"></p></div><div class="filter-controls"><label class="owner-search compact-search"><span aria-hidden="true">⌕</span><input type="search" id="redemption-search" placeholder="Search records" aria-label="Search redemption records" /></label><label class="filter-label"><span class="sr-only">From date</span><input id="redemption-from" type="date" /></label><label class="filter-label"><span class="sr-only">To date</span><input id="redemption-to" type="date" /></label><label class="filter-label"><span class="sr-only">Reward type</span><select id="redemption-type"><option value="All">All types</option><option value="free-item">Free item</option><option value="discount">Discount</option><option value="custom">Custom reward</option></select></label><label class="filter-label"><span class="sr-only">Staff member</span><select id="redemption-staff"><option value="All">All staff</option></select></label><label class="filter-label"><span class="sr-only">Redemption status</span><select id="redemption-status"><option value="All">All statuses</option><option>Completed</option><option>Pending</option></select></label></div></div><div class="owner-table-wrap"><table><thead><tr><th>Redemption ID</th><th>Customer</th><th>Reward</th><th>Stamps</th><th>Date & time</th><th>Processed by</th><th>Status</th><th><span class="sr-only">Details</span></th></tr></thead><tbody id="redemption-table"></tbody></table></div><p class="empty-row" id="redemption-empty" hidden>No redemption records match these filters.</p></div>
+          </section>
+
+          <section class="owner-section" id="customers">
+            <div class="owner-section-heading"><div><p class="owner-eyebrow">YOUR LOYALTY COMMUNITY</p><h2>Customer Activity</h2><p class="owner-subtitle">Member activity associated with <strong class="business-name-inline">your business</strong> only.</p></div></div>
+            <div class="owner-panel data-panel"><div class="data-toolbar"><div><h3>Loyalty members</h3><p id="customer-count"></p></div><div class="customer-tools"><label class="owner-search"><span aria-hidden="true">⌕</span><input type="search" id="customer-search" placeholder="Search members" aria-label="Search loyalty members" /></label><label class="filter-label"><span class="sr-only">Filter member activity</span><select id="customer-filter"><option value="All">All members</option><option value="Rewards">Has available reward</option><option value="Recent">Active this week</option></select></label></div></div><div class="owner-table-wrap"><table><thead><tr><th>Customer</th><th>Member since</th><th>Stamp balance</th><th>Available rewards</th><th>Rewards redeemed</th><th>Last activity</th><th><span class="sr-only">Details</span></th></tr></thead><tbody id="customer-table"></tbody></table></div><p class="empty-row" id="customer-empty" hidden>No loyalty members match your search.</p></div>
+          </section>
+
+          <section class="owner-section" id="settings">
+            <div class="owner-section-heading"><div><p class="owner-eyebrow">BUSINESS PROFILE</p><h2>Settings</h2><p class="owner-subtitle">Manage basic business contact and programme details.</p></div><span class="unsaved-indicator" id="settings-unsaved" hidden>Unsaved changes</span></div>
+            <form class="owner-panel owner-form settings-form" id="settings-form" novalidate>
+              <div class="form-section-heading"><h3>Business details</h3><p>Subscription and platform access settings are controlled by LoyalLoop.</p></div>
+              <div class="field-row"><label class="owner-field">Business display name<input name="displayName" maxlength="60" required /></label><label class="owner-field">Business contact email<input name="email" type="email" required /></label></div>
+              <div class="field-row"><label class="owner-field">Business contact phone<input name="phone" type="tel" inputmode="tel" /></label><label class="owner-field">Public business slug<input name="slug" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" required /><small>Lowercase letters, numbers, and hyphens.</small></label></div>
+              <label class="check-field"><input name="active" type="checkbox" /><span><strong>Loyalty programme active</strong><small>Members can continue to earn stamps and redeem eligible rewards.</small></span></label>
+              <p class="owner-feedback" id="settings-feedback" role="status" aria-live="polite"></p>
+              <div class="owner-form-actions"><button class="owner-button secondary" type="button" id="settings-reset">Reset</button><button class="owner-button primary" type="submit">Save Changes</button></div>
+              <p class="demo-save-note">Business contact details and loyalty programme status are saved through authorized owner workflows.</p>
+            </form>
+          </section>
+          <footer class="owner-footer">LoyalLoop · Business owner development preview · Demo changes reset when this page is reloaded</footer>
+        </div>
+      </main>
+    </div>
+
+    <dialog class="owner-dialog" id="staff-dialog" aria-labelledby="staff-dialog-title"><form class="dialog-content owner-form" id="staff-form" novalidate><div class="dialog-heading"><div><p class="owner-eyebrow">TEAM ACCESS</p><h2 id="staff-dialog-title">Add staff</h2></div><button type="button" class="dialog-close" data-close-owner-dialog aria-label="Close">×</button></div><label class="owner-field">Full name<input name="name" required maxlength="80" /></label><label class="owner-field">Email address<input name="email" type="email" required /></label><label class="owner-field">Phone number <span class="optional-label">Optional</span><input name="phone" type="tel" /></label><label class="owner-field">Role<select name="role" disabled><option>Staff</option></select><small>Business owners can only add staff roles.</small></label><p class="owner-feedback" id="staff-feedback" role="status" aria-live="polite"></p><div class="owner-form-actions"><button type="button" class="owner-button secondary" data-close-owner-dialog>Cancel</button><button type="submit" class="owner-button primary">Add Staff</button></div><p class="demo-save-note">A new staff member receives a Supabase Auth invitation. Existing accounts can be added without sending another invitation.</p></form></dialog>
+    <dialog class="owner-dialog" id="detail-dialog" aria-labelledby="detail-title"><div class="dialog-content"><div class="dialog-heading"><div><p class="owner-eyebrow" id="detail-eyebrow">RECORD DETAILS</p><h2 id="detail-title">Details</h2></div><button type="button" class="dialog-close" data-close-owner-dialog aria-label="Close">×</button></div><div id="detail-body"></div><div class="owner-form-actions"><button type="button" class="owner-button secondary" data-close-owner-dialog>Close</button></div></div></dialog>
+  </body>
+</html>
